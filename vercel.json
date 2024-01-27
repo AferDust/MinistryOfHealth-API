@@ -21,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "udew/wsgi.py"
+      "dest": "MinistryOfHealth/wsgi.py"
     }
   ]
 }
