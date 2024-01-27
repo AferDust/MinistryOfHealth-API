@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-exaj38^9cf)@f=z#u$z2-=*2iocd&1anmwqlk+@dy8nd=17t5^
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dataset.apps.DatasetConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -114,6 +116,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
 
 
 # Internationalization
