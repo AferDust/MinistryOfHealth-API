@@ -11,22 +11,13 @@ from dataset.models import InsuranceData
 
 
 
-duplicates = (
-    InsuranceData.objects.values('age', 'sex', 'bmi', 'children', 'smoker', 'region', 'charges', 'iin')  # list all fields that define a duplicate
-    .annotate(count_id=Count('id'))
-    .order_by()
-    .filter(count_id__gt=1)
-)
+import secrets
 
-print(duplicates)
+# Generate a secure random string token
+def generate_token():
+    return secrets.token_urlsafe(32)
 
-print(InsuranceData.objects.get(iin=65230198224))
+# Example usage
+API_KEY = generate_token()
+print(API_KEY)
 
-for entry in duplicates:
-    # Exclude the first occurrence from the queryset to delete
-    (
-        InsuranceData.objects.filter(**entry)
-        .order_by('id')  # Order by 'id' or another unique field to keep the first record
-        .exclude(id=InsuranceData.objects.filter(**entry).order_by('id').first().id)  # Exclude the first one
-        .delete()
-    )
