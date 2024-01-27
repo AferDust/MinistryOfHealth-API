@@ -3,7 +3,14 @@ from rest_framework import serializers
 from dataset.models import InsuranceData
 
 
-class InsuranceSerializer(serializers.ModelSerializer):
+class InsuranceSerializerCover(serializers.ModelSerializer):
+
+    class Meta:
+        model = InsuranceData
+        fields = ['iin']
+
+
+class InsuranceSerializerDetail(serializers.ModelSerializer):
 
     class Meta:
         model = InsuranceData
